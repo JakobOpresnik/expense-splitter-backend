@@ -2,12 +2,30 @@ var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
 var GroupSchema = new Schema({
-	'name' : String,
+	'name' : {
+		type: String,
+		required: true
+	},
+	'people' : {
+		type: Number,
+		required: true
+	},
 	'users' : {
 	 	type: [Schema.Types.ObjectId],
-	 	ref: 'User'
+	 	ref: 'User',
+		required: false
 	},
-	'transactions' : Number
+	'purchases' : {
+		type: [Schema.Types.ObjectId],
+		ref: 'Purchase',
+		required: false
+	},
+	'transactions' : {
+		type: Number,
+		required: false
+	}
+}, {
+	timestamps: true
 });
 
 module.exports = mongoose.model('Group', GroupSchema);

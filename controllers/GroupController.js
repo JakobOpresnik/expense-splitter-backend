@@ -54,7 +54,9 @@ module.exports = {
 
         const group = new GroupModel({
 			name : req.body.name,
+            people : req.body.people,
 			users : req.body.users,
+            purchases : req.body.purchases,
 			transactions : req.body.transactions
         });
 
@@ -68,6 +70,10 @@ module.exports = {
                     error: err
                 });
             });
+    },
+
+    addUser: function (req, res) {
+
     },
 
     /**
@@ -85,7 +91,9 @@ module.exports = {
                 }
 
                 group.name = req.body.name ? req.body.name : group.name;
+                group.people = req.body.people ?? group.people;
                 group.users = req.body.users ? req.body.users : group.users;
+                group.purchases = req.body.purchases ?? group.purchases;
                 group.transactions = req.body.transactions ? req.body.transactions : group.transactions;
 
                 group.save()

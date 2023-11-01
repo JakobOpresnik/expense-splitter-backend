@@ -60,6 +60,25 @@ module.exports = {
             });
     },
 
+    currentUser: function(req, res) {
+        UserModel.find()
+            .then(users => {
+                const currentUser = users.find(user => user.token === true)
+                if (!currentUser) {
+                    return res.status(404).json({
+                        message: 'no user currently logged in'
+                    });
+                }
+                return res.status(200).json(currentUser);
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: 'error getting currently logged-in user',
+                    error: err
+                });
+            });
+    },
+
     /**
      * UserController.create()
      */
@@ -78,40 +97,87 @@ module.exports = {
             })
             .catch(err => {
                 return res.status(500).json({
-                    message: 'Error when creating User',
+                    message: 'error when creating User',
                     error: err
                 });
             });
     },
 
     login: function (req, res) {
-        var id = req.params.id;
+/*         const { email, password } = req.body;
 
-        UserModel.findById(id)
-            .then(user => {
-                if (!user) {
-                    return res.status(404).json({
-                        message: 'user not found'
+
+        const users = await UserModel.find();
+        const match = users.find(user => user.email === email && user.password === password)
+
+        if (match) {
+            match.token = true;
+            match.save()
+                .then(loggedUser => {
+                    return res.status(201).json(loggedUser);
+                })
+                .catch(err => {
+                    return res.status(500).json({
+                        message: 'error when logging user in',
+                        error: err
                     });
-                }
+                });
+                        
+            return res.status(201).json(match)
+        }
+        else {
+            return res.status(404).json({
+                message: 'user login failed'
+            });
+        } */
 
-                // user is logged in if his token is set to true
-                user.token = true;
+        // destructure request body
+        const { email, password } = req.body;
 
-                user.save()
+        UserModel.find()
+            .then(users => {
+                const matchingUser = users.find(user => user.email === email && user.password === password)
+                matchingUser.token = true;
+
+                matchingUser.save()
                     .then(loggedUser => {
                         return res.status(201).json(loggedUser);
                     })
                     .catch(err => {
                         return res.status(500).json({
-                            message: 'error when loggin user in',
+                            message: 'error when logging user in',
+                            error: err
+                        });
+                    });                        
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: 'error getting users',
+                    error: err
+                });
+            });
+    },
+
+    logout: function(req, res) {
+        UserModel.find()
+            .then(users => {
+                const matchingUser = users.find(user => user.token === true)
+                matchingUser.token = false
+
+                matchingUser.save()
+                    .then(logoutUser => {
+                        return res.status(500).json(logoutUser);
+                    })
+                    .catch(err => {
+                        return res.status(500).json({
+                            message: 'error when logging user out',
                             error: err
                         });
                     });
             })
             .catch(err => {
                 return res.status(500).json({
-                    message: 'error getting user',
+                    message: 'error getting users',
                     error: err
                 });
             });

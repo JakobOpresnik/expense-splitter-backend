@@ -6,10 +6,7 @@ var UserController = require('../controllers/UserController.js');
  * GET
  */
 router.get('/', UserController.list);
-
-/*
- * GET
- */
+router.get('/current', UserController.currentUser);
 router.get('/:id', UserController.show);
 
 /*
@@ -20,8 +17,9 @@ router.post('/', UserController.create);
 /*
  * PUT
  */
-router.put('/:id', UserController.update);
 router.put('/login', UserController.login);
+router.put('/logout', UserController.logout);
+router.put('/:id', UserController.update);
 
 /*
  * DELETE

@@ -20,6 +20,7 @@ router.post('/', GroupController.create);
 /*
  * PUT
  */
+router.put('/add', GroupController.addUser);
 router.put('/:id', GroupController.update);
 
 /*

@@ -9,8 +9,23 @@ Content-Type: application/json
 	"username" : "Jasa",
 	"password" : "jasa123",
 	"email" : "jasa.opresnik@gmail.com",
-    "token" : ""
+    "token" : "false"
 }
+
+###
+
+PUT http://localhost:9000/users/login
+Content-Type: application/json
+
+{
+	"email" : "jasa.opresnik@gmail.com",
+	"password" : "jasa123"
+}
+
+###
+
+PUT http://localhost:9000/users/logout
+Content-Type: application/json
 
 ###
 
@@ -20,6 +35,11 @@ Content-Type: application/json
 ###
 
 GET http://localhost:9000/users/6530232102a7005cea4fdefc
+Content-Type: application/json
+
+###
+
+GET http://localhost:9000/users/current
 Content-Type: application/json
 
 ###
@@ -56,12 +76,12 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:9000/groups/6530238b02a7005cea4fdf0a
+GET http://localhost:9000/groups/654243ae94025bb5d485c7d4
 Content-Type: application/json
 
 ###
 
-PUT http://localhost:9000/groups/6530238b02a7005cea4fdf0a
+PUT http://localhost:9000/groups/654243ae94025bb5d485c7d4
 Content-Type: application/json
 
 {
@@ -72,3 +92,15 @@ Content-Type: application/json
 
 DELETE http://localhost:9000/groups/6530257ab4142f375201c4a0
 Content-Type: application/json
+
+###
+
+POST http://localhost:9000/purchases
+Content-Type: application/json
+
+
+{
+	"name": "food",
+	"cost": 10.99,
+	"user": "6532bd1b505cc8a8395fc3e9"
+}
