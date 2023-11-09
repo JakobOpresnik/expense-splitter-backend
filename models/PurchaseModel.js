@@ -2,10 +2,6 @@ var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
 var PurchaseSchema = new Schema({
-	'id' : {
-		type: String,
-		required: true
-	},
 	'name' : {
 		type: String,
 		required: true
@@ -17,6 +13,10 @@ var PurchaseSchema = new Schema({
 	'user' : {
 	 	type: Schema.Types.ObjectId,
 	 	ref: 'User'
+	},
+	'group' : {
+		type: Schema.Types.ObjectId,
+		ref: 'Group'
 	}
 }, {
 	timestamps: true

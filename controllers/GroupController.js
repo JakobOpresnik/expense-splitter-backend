@@ -92,8 +92,14 @@ module.exports = {
 
                 group.name = req.body.name ? req.body.name : group.name;
                 group.people = req.body.people ?? group.people;
-                group.users = req.body.users ? req.body.users : group.users;
-                group.purchases = req.body.purchases ?? group.purchases;
+                if (req.body.users) {
+                    group.users.push(req.body.users)
+                }
+                //group.users = req.body.users ? req.body.users : group.users;
+                if (req.body.purchases) {
+                    group.purchases.push(req.body.purchases)
+                }
+                //group.purchases = req.body.purchases ?? group.purchases;
                 group.transactions = req.body.transactions ? req.body.transactions : group.transactions;
 
                 group.save()

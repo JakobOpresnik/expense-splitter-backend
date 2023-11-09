@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:9000/users/6530232102a7005cea4fdefc
+GET http://localhost:9000/users/6530419a1c5a8f19b3784658
 Content-Type: application/json
 
 ###
@@ -81,16 +81,26 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:9000/groups/654243ae94025bb5d485c7d4
+PUT http://localhost:9000/groups/654801d87c7e7f8e305c876c
 Content-Type: application/json
 
 {
-	"transactions": 2
+	"purchases": "654802ab7c7e7f8e305c879f"
 }
 
 ###
 
 DELETE http://localhost:9000/groups/6530257ab4142f375201c4a0
+Content-Type: application/json
+
+###
+
+GET http://localhost:9000/purchases
+Content-Type: application/json
+
+###
+
+GET http://localhost:9000/purchases/6548f2c61b1d9daa064bd10d
 Content-Type: application/json
 
 ###

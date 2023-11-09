@@ -37,7 +37,7 @@ module.exports = {
                     });
                 }
 
-                return res.json(user);
+                return res.json(purchase);
             })
             .catch(err => {
                 return res.status(500).json({
@@ -52,13 +52,12 @@ module.exports = {
      */
     create: function (req, res) {
         var purchase = new PurchaseModel({
-            id: req.body.name,
 			name : req.body.name,
 			cost : req.body.cost,
-			user : "6532bd1b505cc8a8395fc3e9"
+			user : req.body.user,
+            group : req.body.group
         });
 
-        console.log(purchase);
 
         purchase.save()
             .then(newPurchase => {
@@ -89,6 +88,7 @@ module.exports = {
                 purchase.name = req.body.name ? req.body.name : purchase.name;
                 purchase.cost = req.body.cost ? req.body.cost : purchase.cost;
                 purchase.user = req.body.user ? req.body.user : purchase.user;
+                purchase.group = req.body.group ? req.body.group : purchase.group;
 
                 purchase.save()
                     .then(updatedPurchase => {

@@ -69,6 +69,7 @@ module.exports = {
                         message: 'no user currently logged in'
                     });
                 }
+                //console.log(currentUser);
                 return res.status(200).json(currentUser);
             })
             .catch(err => {
