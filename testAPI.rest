@@ -90,6 +90,25 @@ Content-Type: application/json
 
 ###
 
+PUT http://localhost:9000/groups/65550586ed7d6f4a0b28b2b0/remove/65493279911d4fb619bf72c8
+Content-Type: application/json
+
+###
+
+GET http://localhost:9000/groups/6570cc5e5f43cc32058ee6cf/hasUser/65555b641812a2b491c35d1b
+Content-Type: application/json
+
+###
+
+PUT http://localhost:9000/groups/6570cc5e5f43cc32058ee6cf
+Content-Type: application/json
+
+{
+	"users": "65555b641812a2b491c35d1b"
+}
+
+###
+
 DELETE http://localhost:9000/groups/6530257ab4142f375201c4a0
 Content-Type: application/json
 
@@ -114,3 +133,8 @@ Content-Type: application/json
 	"cost": 10.99,
 	"user": "6532bd1b505cc8a8395fc3e9"
 }
+
+###
+
+GET http://localhost:9000/purchases/user/65555b641812a2b491c35d1b
+Content-Type: application/json

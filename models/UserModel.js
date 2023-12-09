@@ -19,7 +19,12 @@ var UserSchema = new Schema({
 		required: true,
 		default: 0
 	},
-	
+	'purchases' : {
+		type: [Schema.Types.ObjectId],
+		ref: 'Purchase',
+		required: false,
+		default: [],
+	},
 	'token': {
 		type: Boolean,
 		required: false,

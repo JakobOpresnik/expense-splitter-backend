@@ -47,6 +47,32 @@ module.exports = {
             });
     },
 
+    hasUser: function (req, res) {
+        var groupId = req.params.id;
+        var userId = req.params.userId;
+
+        GroupModel.findById(groupId)
+        .then(group => {
+            if (!group) {
+                return res.status(404).json({
+                    message: 'group not found'
+                });
+            }
+            for (let user of group.users) {
+                if (user.toString() === userId) {
+                    return res.status(200).json(true);
+                }
+            }
+            return res.status(200).json(false);
+        })
+        .catch(err => {
+            return res.status(500).json({
+                message: 'error getting group',
+                error: err
+            });
+        });
+    },
+
     /**
      * GroupController.create()
      */
@@ -76,6 +102,42 @@ module.exports = {
 
     },
 
+    removeUser: function (req, res) {
+        var id = req.params.id;
+        var userId = req.params.userId;
+
+        GroupModel.findById(id)
+        .then(group => {
+            if (!group) {
+                return res.status(404).json({
+                    message: 'group not found'
+                });
+            }
+            group.name = req.body.name ? req.body.name : group.name;
+            group.people = req.body.people ?? group.people;
+            group.users = group.users.filter(user => user.toString() !== userId);
+            group.purchases = req.body.purchases ?? group.purchases;
+            group.transactions = req.body.transactions ? req.body.transactions : group.transactions;
+
+            group.save()
+                .then(updatedGroup => {
+                    return res.status(201).json(updatedGroup);
+                })
+                .catch(err => {
+                    return res.status(500).json({
+                        message: 'error when updating group',
+                        error: err
+                    });
+                });
+        })
+        .catch(err => {
+            return res.status(500).json({
+                message: 'error getting group',
+                error: err
+            });
+        });
+    },
+
     /**
      * GroupController.update()
      */
@@ -92,7 +154,7 @@ module.exports = {
 
                 group.name = req.body.name ? req.body.name : group.name;
                 group.people = req.body.people ?? group.people;
-                if (req.body.users) {
+                if (req.body.users && !group.users.includes(req.body.users)) {
                     group.users.push(req.body.users)
                 }
                 //group.users = req.body.users ? req.body.users : group.users;
@@ -115,7 +177,8 @@ module.exports = {
             })
             .catch(err => {
                 return res.status(500).json({
-                    message: 'error getting group'
+                    message: 'error getting group',
+                    error: err
                 });
             });
     },

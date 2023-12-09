@@ -12,11 +12,13 @@ var PurchaseSchema = new Schema({
 	},
 	'user' : {
 	 	type: Schema.Types.ObjectId,
-	 	ref: 'User'
+	 	ref: 'User',
+		required: true,
 	},
 	'group' : {
 		type: Schema.Types.ObjectId,
-		ref: 'Group'
+		ref: 'Group',
+		required: true,
 	}
 }, {
 	timestamps: true

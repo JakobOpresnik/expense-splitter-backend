@@ -8,21 +8,24 @@ var GroupSchema = new Schema({
 	},
 	'people' : {
 		type: Number,
-		required: true
+		required: true,
 	},
 	'users' : {
 	 	type: [Schema.Types.ObjectId],
 	 	ref: 'User',
-		required: false
+		required: false,
+		default: [],
 	},
 	'purchases' : {
 		type: [Schema.Types.ObjectId],
 		ref: 'Purchase',
-		required: false
+		required: false,
+		default: [],
 	},
 	'transactions' : {
 		type: Number,
-		required: false
+		required: false,
+		default: 0,
 	}
 }, {
 	timestamps: true

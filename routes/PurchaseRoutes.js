@@ -6,11 +6,8 @@ var PurchaseController = require('../controllers/PurchaseController.js');
  * GET
  */
 router.get('/', PurchaseController.list);
-
-/*
- * GET
- */
 router.get('/:id', PurchaseController.show);
+router.get('/user/:id', PurchaseController.byUser);
 
 /*
  * POST

@@ -47,6 +47,22 @@ module.exports = {
             });
     },
 
+    byUser: function (req, res) {
+        var userId = req.params.id;
+
+        PurchaseModel.find()
+            .then(purchases => {
+                const userPurchases = purchases.filter(purchase => purchase.user.toString() === userId);
+                return res.json(userPurchases);
+            })
+            .catch(err => {
+                return res.status(500).json({
+                    message: 'error when getting purchases',
+                    error: err
+                });
+            });
+    },
+
     /**
      * PurchaseController.create()
      */
