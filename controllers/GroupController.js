@@ -60,10 +60,14 @@ module.exports = {
             }
             for (let user of group.users) {
                 if (user.toString() === userId) {
-                    return res.status(200).json(true);
+                    return res.status(200).json({
+                        message: true,
+                    });
                 }
             }
-            return res.status(200).json(false);
+            return res.status(200).json({
+                message: false,
+            });
         })
         .catch(err => {
             return res.status(500).json({

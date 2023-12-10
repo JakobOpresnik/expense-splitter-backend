@@ -221,6 +221,7 @@ module.exports = {
                 user.username = req.body.username ? req.body.username : user.username;
                 user.password = req.body.password ? req.body.password : user.password;
                 user.email = req.body.email ? req.body.email : user.email;
+                user.balance = req.body.balance ? req.body.balance : user.balance;
                 user.token = req.body.token ? req.body.token : user.token;
 
                 user.save()

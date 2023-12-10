@@ -44,11 +44,11 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:9000/users/6530232102a7005cea4fdefc
+PUT http://localhost:9000/users/6532c0e1044a9646b50779ee
 Content-Type: application/json
 
 {
-	"password" : "jasa12345"
+	"balance" : "10"
 }
 
 ###
@@ -95,7 +95,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:9000/groups/6570cc5e5f43cc32058ee6cf/hasUser/65555b641812a2b491c35d1b
+GET http://localhost:9000/groups/657457a35486e7ef70e120c9/hasUser/6532c0e1044a9646b50779ee
 Content-Type: application/json
 
 ###
