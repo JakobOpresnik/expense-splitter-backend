@@ -127,14 +127,19 @@ Content-Type: application/json
 POST http://localhost:9000/purchases
 Content-Type: application/json
 
-
 {
 	"name": "food",
 	"cost": 10.99,
-	"user": "6532bd1b505cc8a8395fc3e9"
+	"user": "6532c0e1044a9646b50779ee",
+	"group": "657457a35486e7ef70e120c9"
 }
 
 ###
 
 GET http://localhost:9000/purchases/user/65555b641812a2b491c35d1b
+Content-Type: application/json
+
+###
+
+DELETE http://localhost:9000/purchases/6577257c3af9fec2481318b5
 Content-Type: application/json

@@ -133,7 +133,7 @@ module.exports = {
 
         PurchaseModel.findByIdAndDelete(id)
             .then(deletedPurchase => {
-                return res.status(204).json(deletedPurchase);
+                return res.status(201).json(deletedPurchase);
             })
             .catch(err => {
                 return res.status(500).json({
